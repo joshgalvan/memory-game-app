@@ -101,3 +101,5 @@ class EmojiMemoryGame: ObservableObject {
         model.shuffle()
     }
 }
+
+// TODO: Redesign app architecture to include HW6. Kinda wanna do this TBH.
