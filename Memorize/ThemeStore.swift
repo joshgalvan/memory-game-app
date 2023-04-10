@@ -7,17 +7,40 @@
 
 import SwiftUI
 
-struct Theme<CardContent>: Codable where CardContent: Codable {
-    private(set) var name: String
-    private(set) var emojis: [CardContent]
-    private(set) var numberOfPairs: Int
-    private(set) var color: String
+// This doesn't need to be generic, but it's fine for now.
+struct Theme<CardContent>: Codable, Equatable, Identifiable where CardContent: Codable & Equatable {
+    var name: String
+    var emojis: [CardContent]
+    var numberOfPairs: Int
+    var color: String
+    var id = UUID()
     
     init(name: String, emojis: [CardContent], numberOfPairs: Int, color: String) {
         self.name = name
         self.emojis = emojis
         self.numberOfPairs = numberOfPairs
         self.color = color
+    }
+    
+    var firstFourEmojis: [CardContent] {
+        Array(emojis.prefix(4))
+    }
+    
+    var UIColor: Color {
+        switch self.color {
+        case "blue": return .blue
+        case "red": return .red
+        case "orange": return .orange
+        case "purple": return .purple
+        case "pink": return .pink
+        case "green": return .green
+        case "brown": return .brown
+        case "cyan": return .cyan
+        case "indigo": return .indigo
+        case "mint": return .mint
+        case "white": return .white
+        default: return .gray
+        }
     }
 }
 
@@ -44,7 +67,7 @@ class ThemeStore: ObservableObject {
     }
     
     init() {
-        restoreFromUserDefaults()
+        // restoreFromUserDefaults()
         if themes.isEmpty {
             // Default themes.
             insertTheme(name: "Transportation", emojis: ["🚲", "🚂", "🚁", "🚜", "🚕", "🏎️", "🚑", "🚓", "🚒", "✈️", "🚀", "⛵️", "🛸", "🛶", "🚌", "🏍️", "🛺", "🚠", "🛵", "🚗", "🚚", "🚇", "🛻", "🚝"], numberOfPairs: 18, color: "red")
@@ -56,6 +79,8 @@ class ThemeStore: ObservableObject {
         }
     }
     
+    // MARK: Intents
+    
     func insertTheme(name: String, emojis: [String], numberOfPairs: Int, color: String) {
         themes.append(.init(name: name, emojis: emojis, numberOfPairs: numberOfPairs, color: color))
     }
@@ -63,4 +88,5 @@ class ThemeStore: ObservableObject {
     func insertTheme(_ theme: Theme<String>) {
         themes.append(theme)
     }
+    
 }
