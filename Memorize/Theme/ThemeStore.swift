@@ -27,7 +27,7 @@ struct Theme<CardContent>: Codable, Equatable, Identifiable where CardContent: C
     }
     
     var UIColor: Color {
-        switch self.color {
+        switch self.color.localizedLowercase {
         case "blue": return .blue
         case "red": return .red
         case "orange": return .orange
@@ -39,6 +39,7 @@ struct Theme<CardContent>: Codable, Equatable, Identifiable where CardContent: C
         case "indigo": return .indigo
         case "mint": return .mint
         case "white": return .white
+        case "black": return .black
         default: return .gray
         }
     }
