@@ -32,21 +32,9 @@ class EmojiMemoryGame: ObservableObject {
         model.cards
     }
     
+    // TODO: Remove color stuff from game, ask the theme instead
     var color: Color {
-        switch theme.color {
-        case "blue": return .blue
-        case "red": return .red
-        case "orange": return .orange
-        case "purple": return .purple
-        case "pink": return .pink
-        case "green": return .green
-        case "brown": return .brown
-        case "cyan": return .cyan
-        case "indigo": return .indigo
-        case "mint": return .mint
-        case "white": return .white
-        default: return .gray
-        }
+        theme.UIColor
     }
     
     var score: Int {

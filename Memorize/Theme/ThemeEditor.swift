@@ -58,7 +58,6 @@ struct ThemeEditor: View {
             // Need to ensure user can only add emojis.
             if let last = emojis.last, !theme.emojis.contains(String(last)), last.isEmoji {
                 theme.emojis.append(String(emojis.last!))
-                print("inside \(theme.emojis)")
             }
         }
     }
@@ -67,7 +66,7 @@ struct ThemeEditor: View {
         Section(header: Text("Remove Emojis")) {
             let emojis = theme.emojis.uniqued()
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 30))]) {
-                ForEach(theme.emojis, id: \.self) { emoji in
+                ForEach(emojis, id: \.self) { emoji in
                     Text(emoji)
                         .onTapGesture {
                             withAnimation {
