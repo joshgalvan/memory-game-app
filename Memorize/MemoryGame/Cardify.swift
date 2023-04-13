@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-// ViewModifier is also a View.
-// ViewModifiers can be animated.
-// ALL custom animation goes on inside custom ViewModifiers or Shapes.
-
 struct Cardify: ViewModifier, Animatable {
     init(isFaceUp: Bool) {
         rotation = isFaceUp ? 0 : 180
