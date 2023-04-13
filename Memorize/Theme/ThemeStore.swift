@@ -76,13 +76,7 @@ class ThemeStore: ObservableObject {
             insertTheme(name: "Food", emojis: ["🍏", "🍎", "🍐", "🍊", "🍇", "🍉", "🍌", "🍋", "🍓", "🫐", "🍒", "🥥", "🍍", "🍑", "🥝", "🍅", "🥑", "🥒", "🥦", "🌽", "🫑", "🫒", "🍞", "🥨"], numberOfPairs: 10, color: "pink")
         }
     }
-    
-    func printAllIDs() {
-        for (i, theme) in themes.enumerated() {
-            print("\(theme.id): \(i)")
-        }
-    }
-    
+        
     // MARK: Intents
     
     func insertTheme(name: String, emojis: [String], numberOfPairs: Int, color: String) {
