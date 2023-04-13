@@ -36,11 +36,11 @@ struct ThemeEditor: View {
         }
     }
     
-    var colors = ["blue","red","orange","purple","pink","green","brown","cyan","indigo","mint","white","black","gray"]
+    static var colors = ["blue","red","orange","purple","pink","green","brown","cyan","indigo","mint","white","black","gray"]
     var colorSection: some View {
         Section() {
             Picker("Color of cards", selection: $theme.color) {
-                ForEach(colors, id: \.self) { color in
+                ForEach(ThemeEditor.colors, id: \.self) { color in
                     Text(color)
                 }
             }
@@ -51,7 +51,7 @@ struct ThemeEditor: View {
     var numberOfPairsSection: some View {
         Section() {
             Picker("Number of pairs", selection: $theme.numberOfPairs) {
-                ForEach(0..<(theme.emojis.count / 2) + 1, id: \.self) {
+                ForEach(0..<theme.emojis.count, id: \.self) {
                     Text(String($0))
                 }
             }
@@ -86,6 +86,9 @@ struct ThemeEditor: View {
                         .onTapGesture {
                             withAnimation {
                                 theme.emojis.removeAll { $0 == emoji }
+                                if theme.numberOfPairs == theme.emojis.count {
+                                    theme.numberOfPairs -= 1
+                                }
                             }
                         }
                 }

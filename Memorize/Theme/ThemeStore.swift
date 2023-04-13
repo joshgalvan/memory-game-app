@@ -8,7 +8,7 @@
 import SwiftUI
 
 // This doesn't need to be generic, but it's fine for now.
-struct Theme<CardContent>: Codable, Equatable, Identifiable where CardContent: Codable & Equatable {
+struct Theme<CardContent>: Codable, Equatable, Identifiable, Hashable where CardContent: Codable & Equatable & Hashable {
     var name: String
     var emojis: [CardContent]
     var numberOfPairs: Int
@@ -20,10 +20,6 @@ struct Theme<CardContent>: Codable, Equatable, Identifiable where CardContent: C
         self.emojis = emojis
         self.numberOfPairs = numberOfPairs
         self.color = color
-    }
-    
-    var firstFourEmojis: [CardContent] {
-        Array(emojis.prefix(4))
     }
     
     var UIColor: Color {
@@ -43,6 +39,7 @@ struct Theme<CardContent>: Codable, Equatable, Identifiable where CardContent: C
         default: return .gray
         }
     }
+    
 }
 
 class ThemeStore: ObservableObject {
@@ -69,6 +66,7 @@ class ThemeStore: ObservableObject {
     
     init() {
         restoreFromUserDefaults()
+        themes = []
         if themes.isEmpty {
             // Default themes.
             insertTheme(name: "Transportation", emojis: ["🚲", "🚂", "🚁", "🚜", "🚕", "🏎️", "🚑", "🚓", "🚒", "✈️", "🚀", "⛵️", "🛸", "🛶", "🚌", "🏍️", "🛺", "🚠", "🛵", "🚗", "🚚", "🚇", "🛻", "🚝"], numberOfPairs: 18, color: "red")
@@ -76,7 +74,13 @@ class ThemeStore: ObservableObject {
             insertTheme(name: "Animals", emojis: ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨", "🐯", "🦁", "🐮", "🐷", "🐽", "🐸", "🐵", "🐔", "🐧", "🐦", "🐤", "🦆", "🦅", "🦋"], numberOfPairs: 10, color: "mint")
             insertTheme(name: "Flags", emojis: ["🇦🇫", "🇦🇽", "🇦🇱", "🇩🇿", "🇦🇸", "🇦🇩", "🇦🇴", "🇦🇮", "🇦🇶", "🇦🇬", "🇦🇷", "🇦🇲", "🇦🇼", "🇦🇺", "🇦🇹", "🇦🇿", "🇧🇸", "🇧🇭", "🇧🇩", "🇧🇧", "🇧🇾", "🇧🇪", "🇧🇿", "🇺🇸"], numberOfPairs: 6, color: "indigo")
             insertTheme(name: "Objects", emojis: ["📷", "📞", "☎️", "📺", "📻", "🧭", "🎛️", "⏰", "⏳", "📡", "🔋", "💡", "🛢️", "💵", "🧰", "🔧", "🧲", "⛓️", "🔫", "🧨", "⚔️", "🛡️", "💊", "🧽"], numberOfPairs: 15, color: "orange")
-            insertTheme(name: "Food", emojis: ["🍏", "🍎", "🍐", "🍊", "🍇", "🍉", "🍌", "🍋", "🍓", "🫐", "🍒", "🥥", "🍍", "🍑", "🥝", "🍅", "🥑", "🥒", "🥦", "🌽", "🫑", "🫒", "🍞", "🥨"], numberOfPairs: 10, color: "gray")
+            insertTheme(name: "Food", emojis: ["🍏", "🍎", "🍐", "🍊", "🍇", "🍉", "🍌", "🍋", "🍓", "🫐", "🍒", "🥥", "🍍", "🍑", "🥝", "🍅", "🥑", "🥒", "🥦", "🌽", "🫑", "🫒", "🍞", "🥨"], numberOfPairs: 10, color: "pink")
+        }
+    }
+    
+    func printAllIDs() {
+        for (i, theme) in themes.enumerated() {
+            print("\(theme.id): \(i)")
         }
     }
     

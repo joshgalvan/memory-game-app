@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+// TODO: Implement timed autosaving
+// TODO: Implement persistence of game state, instead of just theme state
+
 struct ContentView: View {
     var body: some View {
         ThemeChooser()
@@ -17,10 +20,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         return ContentView()
-            .preferredColorScheme(.light)
             .environmentObject(ThemeStore())
     }
 }
-
-// TODO: Add 'DONE' button for theme editor sheet
-// TODO: Add edit mode for theme chooser
