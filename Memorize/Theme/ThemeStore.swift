@@ -93,4 +93,8 @@ class ThemeStore: ObservableObject {
         themes.append(theme)
     }
     
+    func removeTheme(_ theme: Theme<String>) {
+        themes.remove(theme)
+    }
+    
 }
