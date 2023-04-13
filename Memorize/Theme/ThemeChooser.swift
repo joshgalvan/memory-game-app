@@ -98,7 +98,7 @@ struct ThemeChooser: View {
             // How to set themeToEdit here? Can't pass it in via a function... Would have
             // to associate the navigation link selection with the underlying theme when
             // in edit mode.
-            // themeToEdit = theme
+            // themeToEdit = store.themes[someAssociatedIndex!]
         }
     }
     

@@ -70,7 +70,8 @@ struct ThemeEditor: View {
     
     func addEmojis(_ emojis: String) {
         withAnimation {
-            // Need to ensure user can only add emojis.
+            // Need to ensure user can only add emojis, and only the most recent emojis
+            // gets appended.
             if let last = emojis.last, !theme.emojis.contains(String(last)), last.isEmoji {
                 theme.emojis.append(String(emojis.last!))
             }
