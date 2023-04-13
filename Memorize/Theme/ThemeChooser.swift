@@ -61,18 +61,20 @@ struct ThemeChooser: View {
         }
         .foregroundColor(theme.UIColor)
         .swipeActions {
-            Button(role: .destructive) {
-                store.removeTheme(theme)
-            } label: {
-                Label("Delete", systemImage: "trash")
-            }
-            
             Button {
                 themeToEdit = theme
             } label: {
                 Label("Edit", systemImage: "pencil")
             }
             .tint(.yellow)
+            
+            if editMode == .active {
+                Button(role: .destructive) {
+                    store.removeTheme(theme)
+                } label: {
+                    Label("Delete", systemImage: "trash")
+                }
+            }
         }
     }
         
