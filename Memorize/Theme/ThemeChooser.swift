@@ -5,14 +5,11 @@
 //  Created by Joshua Galvan on 4/10/23.
 //
 
-// This displays the ThemeChooser
-
 import SwiftUI
 
 struct ThemeChooser: View {
     @EnvironmentObject var store: ThemeStore
     @State private var addingTheme = false
-    @State private var editingTheme = false
     @State private var themeToEdit: Theme<String>?
     @State private var editMode: EditMode = .inactive
     
@@ -33,8 +30,7 @@ struct ThemeChooser: View {
                     .onMove { indexSet, newOffset in
                         store.themes.move(fromOffsets: indexSet, toOffset: newOffset)
                     }
-                    .gesture(editMode == .active ? tapToEditGesture : nil)
-                    
+                    // .gesture(editMode == .active ? tapToEditGesture : nil)
                 }
                 .navigationTitle("Choose theme")
                 .toolbar {
@@ -67,7 +63,6 @@ struct ThemeChooser: View {
         .swipeActions {
             Button {
                 themeToEdit = theme
-                editingTheme = true
             } label: {
                 Label("Edit", systemImage: "pencil")
             }
@@ -85,9 +80,15 @@ struct ThemeChooser: View {
         .padding(.top)
     }
     
+    // This gesture would allow the user to tap themes when in edit mode so they can also
+    // edit themes that way, opposed to only being able to use the swipeAction button.
     private var tapToEditGesture: some Gesture {
         TapGesture().onEnded {
-            editingTheme = true
+            // TODO: -
+            // How to set themeToEdit here? Can't pass it in via a function... Would have
+            // to associate the navigation link selection with the underlying theme when
+            // in edit mode.
+            // themeToEdit = theme
         }
     }
     

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// This doesn't need to be generic, but it's fine for now.
+// This doesn't really need to be generic, but it's fine for now.
 struct Theme<CardContent>: Codable, Equatable, Identifiable, Hashable where CardContent: Codable & Equatable & Hashable {
     var name: String
     var emojis: [CardContent]
