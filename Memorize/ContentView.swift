@@ -22,5 +22,5 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-// TODO: Make game show correct theme color
-// TODO: Picker for color would be good
+// TODO: Add 'DONE' button for theme editor sheet
+// TODO: Add edit mode for theme chooser

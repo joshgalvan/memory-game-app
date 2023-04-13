@@ -68,7 +68,7 @@ class ThemeStore: ObservableObject {
     }
     
     init() {
-        // restoreFromUserDefaults()
+        restoreFromUserDefaults()
         if themes.isEmpty {
             // Default themes.
             insertTheme(name: "Transportation", emojis: ["🚲", "🚂", "🚁", "🚜", "🚕", "🏎️", "🚑", "🚓", "🚒", "✈️", "🚀", "⛵️", "🛸", "🛶", "🚌", "🏍️", "🛺", "🚠", "🛵", "🚗", "🚚", "🚇", "🛻", "🚝"], numberOfPairs: 18, color: "red")

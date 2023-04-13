@@ -9,14 +9,24 @@ import SwiftUI
 
 struct ThemeEditor: View {
     @Binding var theme: Theme<String>
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        Form {
-            nameSection
-            colorSection
-            addEmojisSection
-            removeEmojisSection
-            numberOfPairsSection
+        NavigationView {
+            Form {
+                nameSection
+                addEmojisSection
+                removeEmojisSection
+                colorSection
+                numberOfPairsSection
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+            }
         }
     }
     
@@ -26,16 +36,21 @@ struct ThemeEditor: View {
         }
     }
     
+    var colors = ["blue","red","orange","purple","pink","green","brown","cyan","indigo","mint","white","black","gray"]
     var colorSection: some View {
-        Section(header: Text("Color")) {
-            TextField("Color", text: $theme.color)
+        Section() {
+            Picker("Color of cards", selection: $theme.color) {
+                ForEach(colors, id: \.self) { color in
+                    Text(color)
+                }
+            }
         }
     }
     
     @State private var numberOfPairs = ""
     var numberOfPairsSection: some View {
-        Section(header: Text("Number of pairs")) {
-            Picker("", selection: $theme.numberOfPairs) {
+        Section() {
+            Picker("Number of pairs", selection: $theme.numberOfPairs) {
                 ForEach(0..<(theme.emojis.count / 2) + 1, id: \.self) {
                     Text(String($0))
                 }
@@ -81,8 +96,9 @@ struct ThemeEditor: View {
     
 }
 
-//struct ThemeEditor_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ThemeEditor()
-//    }
-//}
+struct ThemeEditor_Previews: PreviewProvider {
+    static var theme = Theme(name: "Food", emojis: ["🍏", "🍎", "🍐", "🍊", "🍇", "🍉", "🍌", "🍋", "🍓", "🫐", "🍒", "🥥", "🍍", "🍑", "🥝", "🍅", "🥑", "🥒", "🥦", "🌽", "🫑", "🫒", "🍞", "🥨"], numberOfPairs: 10, color: "gray")
+    static var previews: some View {
+        ThemeEditor(theme: .constant(theme))
+    }
+}
