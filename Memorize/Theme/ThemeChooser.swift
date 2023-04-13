@@ -82,6 +82,8 @@ struct ThemeChooser: View {
     
     // This gesture would allow the user to tap themes when in edit mode so they can also
     // edit themes that way, opposed to only being able to use the swipeAction button.
+    // This isn't necessarily needed, and the app is complete without it, but would be
+    // fun to implement.
     private var tapToEditGesture: some Gesture {
         TapGesture().onEnded {
             // TODO: -
