@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC99B62529C3AA1900F3D923 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC99B62429C3AA1900F3D923 /* Pie.swift */; };
 		ECCE13B329D2156E005E941A /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE13B229D2156E005E941A /* Cardify.swift */; };
 		ECCE146729E28D57005E941A /* ThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE146629E28D57005E941A /* ThemeStore.swift */; };
 		ECCE14A529E48746005E941A /* EmojiMemoryGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE14A429E48746005E941A /* EmojiMemoryGameView.swift */; };
@@ -24,7 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EC99B62429C3AA1900F3D923 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
 		ECCE13B229D2156E005E941A /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		ECCE146629E28D57005E941A /* ThemeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStore.swift; sourceTree = "<group>"; };
 		ECCE14A429E48746005E941A /* EmojiMemoryGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGameView.swift; sourceTree = "<group>"; };
@@ -55,6 +53,8 @@
 		ECCE14AC29E4B8B4005E941A /* MemoryGame */ = {
 			isa = PBXGroup;
 			children = (
+				ECDED93429C39A8A007AF59D /* AspectVGrid.swift */,
+				ECCE13B229D2156E005E941A /* Cardify.swift */,
 				ECCE14A429E48746005E941A /* EmojiMemoryGameView.swift */,
 				ECDED93229C280B8007AF59D /* EmojiMemoryGame.swift */,
 				ECDED92E29C280A8007AF59D /* MemoryGame.swift */,
@@ -76,9 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				ECCE14AA29E4B8A7005E941A /* UtilityExtensions.swift */,
-				ECDED93429C39A8A007AF59D /* AspectVGrid.swift */,
-				ECCE13B229D2156E005E941A /* Cardify.swift */,
-				EC99B62429C3AA1900F3D923 /* Pie.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -196,7 +193,6 @@
 				ECCE14AB29E4B8A7005E941A /* UtilityExtensions.swift in Sources */,
 				ECDED93529C39A8A007AF59D /* AspectVGrid.swift in Sources */,
 				ECDED92329C28046007AF59D /* ContentView.swift in Sources */,
-				EC99B62529C3AA1900F3D923 /* Pie.swift in Sources */,
 				ECCE14A929E4B796005E941A /* ThemeEditor.swift in Sources */,
 				ECCE14A529E48746005E941A /* EmojiMemoryGameView.swift in Sources */,
 				ECDED92129C28046007AF59D /* MemorizeApp.swift in Sources */,
