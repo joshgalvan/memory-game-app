@@ -60,7 +60,7 @@ struct EmojiMemoryGameView: View {
         } label: {
             Text("Restart")
         }
-        .frame(height: 20)
+//        .frame(height: 20)
         .buttonStyle(.bordered)
         .buttonBorderShape(.capsule)
         .padding(.bottom)

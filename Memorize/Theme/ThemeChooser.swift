@@ -96,7 +96,8 @@ struct ThemeChooser: View {
         }
         .buttonStyle(.bordered)
         .buttonBorderShape(.capsule)
-        .padding(.top)
+        .padding(.bottom)
+        .padding(.top, 8)
     }
         
 }
