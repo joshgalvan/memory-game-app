@@ -54,7 +54,7 @@ struct EmojiMemoryGameView: View {
     
     var newGameButton: some View {
         Button {
-            withAnimation {
+            withAnimation(.easeInOut(duration: 0.20)) {
                 game.restart()
             }
         } label: {

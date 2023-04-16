@@ -32,7 +32,6 @@ class EmojiMemoryGame: ObservableObject {
         model.cards
     }
     
-    // TODO: Remove color stuff from game, ask the theme instead
     var color: Color {
         theme.UIColor
     }
@@ -59,5 +58,3 @@ class EmojiMemoryGame: ObservableObject {
         model.shuffle()
     }
 }
-
-// TODO: Redesign app architecture to include HW6. Kinda wanna do this TBH.

@@ -91,7 +91,7 @@ struct ThemeChooser: View {
         
     private var newThemeButton: some View {
         Button("New Theme") {
-            store.insertTheme(name: "New", emojis: [], numberOfPairs: 0, color: "black")
+            store.insertTheme(name: "New", emojis: ["😀","🤣"], numberOfPairs: 2, color: "gray")
             addingTheme = true
         }
         .buttonStyle(.bordered)

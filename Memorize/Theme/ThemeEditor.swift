@@ -51,7 +51,7 @@ struct ThemeEditor: View {
     var numberOfPairsSection: some View {
         Section() {
             Picker("Number of pairs", selection: $theme.numberOfPairs) {
-                ForEach(0..<theme.emojis.count, id: \.self) {
+                ForEach(0...theme.emojis.count, id: \.self) {
                     Text(String($0))
                 }
             }
