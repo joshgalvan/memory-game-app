@@ -29,6 +29,10 @@ struct EmojiMemoryGameView: View {
                 Text("Score:")
                 Text(String(game.score)).foregroundColor(.yellow)
             }
+            // Remove animation from score counter. Choosing the card with
+            // `game.choose(card)` with a withAnimation wrapper causes the score to also
+            // be animated, which I don't want.
+            .animation(nil)
         }
         .font(.title)
     }
