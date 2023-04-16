@@ -20,8 +20,20 @@ struct ThemeChooser: View {
                     ForEach(store.themes) { theme in
                         let destination = EmojiMemoryGameView(game: EmojiMemoryGame(theme: theme))
                             .navigationBarTitleDisplayMode(.inline)
-                        NavigationLink(destination: destination) {
-                            chooseThemeRows(theme: theme)
+                        ZStack {
+                            NavigationLink(destination: destination) {
+                                chooseThemeRows(theme: theme)
+                            }
+                            
+                            // Allow the NavigationLink section to be tappable while in
+                            // edit mode.
+                            Button {
+                                if editMode == .active {
+                                    themeToEdit = theme
+                                }
+                            } label: {
+                                Color.clear
+                            }
                         }
                     }
                     .onDelete { indexSet in
@@ -30,7 +42,6 @@ struct ThemeChooser: View {
                     .onMove { indexSet, newOffset in
                         store.themes.move(fromOffsets: indexSet, toOffset: newOffset)
                     }
-                    // .gesture(editMode == .active ? tapToEditGesture : nil)
                 }
                 .navigationTitle("Choose theme")
                 .toolbar {
@@ -87,21 +98,7 @@ struct ThemeChooser: View {
         .buttonBorderShape(.capsule)
         .padding(.top)
     }
-    
-    // This gesture would allow the user to tap themes when in edit mode so they can also
-    // edit themes that way, opposed to only being able to use the swipeAction button.
-    // This isn't necessarily needed, and the app is complete without it, but would be
-    // fun to implement.
-    private var tapToEditGesture: some Gesture {
-        TapGesture().onEnded {
-            // TODO: -
-            // How to set themeToEdit here? Can't pass it in via a function... Would have
-            // to associate the navigation link selection with the underlying theme when
-            // in edit mode.
-            // themeToEdit = store.themes[someAssociatedIndex!]
-        }
-    }
-    
+        
 }
 
 struct ThemeChooser_Previews: PreviewProvider {
