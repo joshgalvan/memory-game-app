@@ -16,7 +16,7 @@ struct EmojiMemoryGameView: View {
         VStack {
             header
             gameBody
-            newGameButton
+            restartGameButton
         }
         .padding(.horizontal)
     }
@@ -52,7 +52,7 @@ struct EmojiMemoryGameView: View {
         .foregroundColor(game.color)
     }
     
-    var newGameButton: some View {
+    var restartGameButton: some View {
         Button {
             withAnimation(.easeInOut(duration: 0.20)) {
                 game.restart()
