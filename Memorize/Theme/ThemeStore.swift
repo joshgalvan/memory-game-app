@@ -10,7 +10,13 @@ import SwiftUI
 // This doesn't really need to be generic, but it's fine for now.
 struct Theme<CardContent>: Codable, Equatable, Identifiable, Hashable where CardContent: Codable & Equatable & Hashable {
     var name: String
-    var emojis: [CardContent]
+    var emojis: [CardContent] {
+        willSet(newEmojis) {
+            if newEmojis.count < numberOfPairs {
+                numberOfPairs = newEmojis.count
+            }
+        }
+    }
     var numberOfPairs: Int
     var color: String
     var id = UUID()
@@ -66,6 +72,7 @@ class ThemeStore: ObservableObject {
     
     init() {
         restoreFromUserDefaults()
+        themes = []
         if themes.isEmpty {
             // Default themes.
             insertTheme(name: "Transportation", emojis: ["🚲", "🚂", "🚁", "🚜", "🚕", "🏎️", "🚑", "🚓", "🚒", "✈️", "🚀", "⛵️", "🛸", "🛶", "🚌", "🏍️", "🛺", "🚠", "🛵", "🚗", "🚚", "🚇", "🛻", "🚝"], numberOfPairs: 18, color: "red")

@@ -30,9 +30,20 @@ struct ThemeEditor: View {
         }
     }
     
+    @FocusState private var nameInputIsActive: Bool
     var nameSection: some View {
         Section(header: Text("Name")) {
             TextField("Name", text: $theme.name)
+                .focused($nameInputIsActive)
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button("Done") {
+                            emojisInputIsActive = false
+                            nameInputIsActive = false
+                        }
+                    }
+                }
         }
     }
     
@@ -58,6 +69,7 @@ struct ThemeEditor: View {
         }
     }
     
+    @FocusState private var emojisInputIsActive: Bool
     @State private var emojisToAdd = ""
     var addEmojisSection: some View {
         Section(header: Text("Add Emojis")) {
@@ -65,12 +77,13 @@ struct ThemeEditor: View {
                 .onChange(of: emojisToAdd) { emojis in
                     addEmojis(emojis)
                 }
+                .focused($emojisInputIsActive)
         }
     }
-    
+
     func addEmojis(_ emojis: String) {
         withAnimation {
-            // Need to ensure user can only add emojis, and only the most recent emojis
+            // Need to ensure user can only add emojis, and only the most recent emoji
             // gets appended.
             if let last = emojis.last, !theme.emojis.contains(String(last)), last.isEmoji {
                 theme.emojis.append(String(emojis.last!))
@@ -87,9 +100,6 @@ struct ThemeEditor: View {
                         .onTapGesture {
                             withAnimation {
                                 theme.emojis.removeAll { $0 == emoji }
-                                if theme.numberOfPairs == theme.emojis.count {
-                                    theme.numberOfPairs -= 1
-                                }
                             }
                         }
                 }
